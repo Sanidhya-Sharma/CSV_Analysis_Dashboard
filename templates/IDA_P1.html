@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en" style="overflow-y:scroll;">
+
+<!--HEAD-->
+  <head>
+    <!-- Required Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="static/css/Custom.css" >
+    <link rel="stylesheet" href="static/css/bootstrap.min.css" >
+    <!--    CUSTOM CSS-->
+    <link rel="stylesheet" href="static/css/Load.css" >
+    <!--   CHART.JS CSS -->
+    <script src='static/js/Chart.min.js'></script>
+<!-- LOAD.JS-->
+     <script type = "text/javascript" src = "static/js/load.js" ></script>
+      <title>IDA_P1</title>
+  </head>
+
+
+<!--  HEADER WITH NAVIGATION BAR-->
+  <header>                                                                  <!--src"static/images/logo.png"-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/Home">
+  <img src="">Home
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/WAW">Who are we?</a>
+        </li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle disabled" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Run Analytics
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/IDA">Initiate Database Analytics Sequence</a>
+          <a class="dropdown-item" href="/">Initiate Digitization Sequence</a>
+          <a class="dropdown-item" href="/">Initiate Bot Sequence</a>
+        </div>
+    </ul>
+    <span class="navbar-text">
+      Developed by Sid
+    </span>
+  </div>
+</nav>
+</header>
+
+<!--BODY-->
+<body onload="myFunction()" style="margin:0;">
+
+<!--LOADING ICON -->
+<div class="container-fluid">
+
+<div id="loader"></div>
+
+<div class="container">
+<a id="loadertxt"><h5 data-text="Reporting...." style="font-size:10vw;">Reporting....</h5></a>
+</div>
+
+</div>
+
+<!--CONTENT DIV-->
+<div style="display:none;" id="myDiv" class="animate-bottom">
+
+<!--JUMBOTRON  1  -->
+<div class="jumbotron mycustom-jumbotron">
+    <div class="container">
+        <h1 class="display-4">Database Analysis</h1>
+        <p class="lead">Overview of the Database</p>
+    </div>
+</div>
+
+<!--OVERVIEW HEADING  -->
+<div class="container">
+    <div class="row my-3">
+        <div class="col">
+            <h3>Overview of Database</h3>
+        </div>
+    </div>
+</div>
+
+<!--OVERVIEW CARDS -->
+<div class="container-fluid">
+<div class="row">
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{rowcount}}</h4>
+        <p class="card-text">Analyzed Rows</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{colcount}}</h4>
+        <p class="card-text">Analyzed Columns</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid">
+<div class="row">
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{nullcount}}</h4>
+        <p class="card-text">Analyzed Null Data</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{total_uniq}}</h4>
+        <p class="card-text">Analyed Unique Data</p>
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{duplic_total}}</h4>
+        <p class="card-text">Analyzed Total Duplictes</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!--BAR CHART DIV -->
+<div class="container-fluid">
+    <div class="row my-3">
+        <div class="col">
+            <h4>Database Duplication Overview</h4>
+        </div>
+    </div>
+    <div class="row my-1">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-container" style="position: relative; height:100%; width:100%">
+                        <canvas id="DuplicateChartbar" width="300" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-container" style="position: relative; height:80%; width:100%">
+                        <canvas id="myChartdoughnut" ></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- LINE CHART DIVISION-->
+<div class="container-fluid">
+    <div class="row my-3">
+        <div class="col">
+            <h4>Analytical Overview</h4>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-container" style="position: relative; height:100vh; width:100vw">
+                        <canvas id="myChartradar"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--JUMBOTRON  2  -->
+<div class="jumbotron mycustom-jumbotron">
+     <div class="container">
+         <h1 class="display-4">Data Health Analysis</h1>
+         <p class="lead">Overview of the Data in Database</p>
+     </div>
+</div>
+
+
+<!-- LINE CHART DIVISION-->
+<div class="container-fluid">
+    <div class="row my-3">
+        <div class="col">
+            <h4>Database Nulls and Uniques Overview</h4>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-container" style="position: relative; height:100vh; width:90vw">
+                        <canvas id="myChart4"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="clearfix visible-xs"></div>-->
+
+<!--DUPLICATE BAR CHART JS-->
+<script>
+      // Global parameters:
+      // do not resize the chart canvas when its container does (keep at 600x400px)
+      Chart.defaults.global.responsive = true;
+      Chart.defaults.global.maintainAspectRatio = true;
+
+      // define the chart data
+      var chartData = {
+        labels : [{% for item in labels %}
+                   "{{item}}",
+                  {% endfor %}],
+        datasets : [{
+            label: '{{ legend }}',
+            fill: true,
+            lineTension: 0.1,
+            backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data : [{% for item in values %}
+                      {{item}},
+                    {% endfor %}],
+            spanGaps: false
+        }]
+      }
+
+      // get chart canvas
+      var holder = document.getElementById("DuplicateChartbar");
+      var ctx = document.getElementById("DuplicateChartbar").getContext("2d");
+
+      // create the chart using the chart canvas
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: chartData,
+        options: {
+
+      scales: {
+
+          xAxes: [{
+            ticks: {
+                 fontSize: 10,
+                 fontColor: "black",
+                 beginAtZero: true,
+            },
+                 scaleLabel: {
+                      display: true,
+                      labelString: 'Coloumns'
+                 },
+
+                 gridLines: {
+                       display: false,
+                 },
+
+          }],
+
+          yAxes: [{
+            ticks: {
+              fontSize: 10,
+              fontColor: "black",
+              beginAtZero: true
+            },
+
+            scaleLabel: {
+                  display: true,
+                  labelString: 'Duplication Count'
+            },
+
+            type: 'linear',
+          }]
+      },
+
+      title: {
+      display: true,
+      text: 'Duplicates',
+      fontSize: 20,
+      fontStyle: 'bold',
+      fontColor: '#000',
+      lineHeight: 5.2,
+      padding: 10
+      },
+
+      legend: {
+      display: true,
+      align: top,
+          labels:{
+          fullWidth: true,
+          boxWidth: 40,
+          fontSize: 12,
+          fontStyle: 'normal',
+          fontColor: '#000',
+          padding: 10
+          }
+      },
+
+      tooltips: {
+        displayColors: true,
+        mode: 'index',
+        intersect: false,
+            callbacks:{
+                mode: 'x',
+            },
+      },
+
+      }
+
+      });
+</script>
+
+
+<!--DATATYPE PIE CHART -->
+<script>
+var pieCanvas = document.getElementById("myChartdoughnut");
+Chart.defaults.global.defaultFontFamily = "Lato";
+Chart.defaults.global.defaultFontSize = 20;
+var pieData = {
+    labels : [{% for item in dtype_pie_lable %}
+                   "{{item}}",
+                  {% endfor %}],
+    datasets: [
+        {
+            data : [{% for item in dtype_pie_value %}
+                      {{item}},
+                    {% endfor %}],
+            backgroundColor: [
+                "#A9DB54",  /*Green, Red, blue*/
+                "#DB8556",
+                "#DCC953"
+            ]
+        }]
+};
+
+var pieChart = new Chart(pieCanvas, {
+  type: 'doughnut',
+  data: pieData,
+
+  options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        cutoutPercentage: 50,
+    scales: {
+      Axes: [{
+        ticks: {
+          beginAtZero: false
+        }
+      }]
+    },
+
+    legend: {
+      display: true,
+      align: top,
+          labels:{
+          fullWidth: true,
+          boxWidth: 40,
+          fontSize: 12,
+          fontStyle: 'normal',
+          fontColor: '#000',
+          padding: 10
+          }
+    },
+
+    title: {
+      display: true,
+      text: 'Database DataType Overview',
+      fontSize: 20,
+      fontStyle: 'bold',
+      fontColor: '#000',
+      lineHeight: 1.2,
+      padding: 10
+        },
+
+      tooltips: {
+          enabled: true,
+          mode: 'single',
+          callbacks: {
+                   label: function(tooltipItem, data) {
+                            return data.labels[tooltipItem.index] + ' - ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + '%';
+                   }
+          }
+      },
+  }
+
+});
+</script>
+
+
+<!--DUPLICATE RADAR CHART-->
+<script>
+function getRandomColor() {
+      var letters = '0123456789ABCDEF'.split('');
+      var color = '#';
+      for (var i = 0; i < 6; i++ ) {
+          color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+  }
+
+
+// chart colors
+var colors = ['#007bff','#28a745','#000000','#c3e6cb','#dc3545','#6c757d'];
+
+/* large line chart */
+var chLine = document.getElementById("myChartradar");
+var chartData = {
+  labels: [{% for item in labels %}
+                   "{{item}}",
+                  {% endfor %}],
+  datasets: [{
+    data: [{% for item in values %}
+                      {{item}},
+                    {% endfor %}],
+
+    backgroundColor: [{% for item in values %}
+                      getRandomColor(),
+                    {% endfor %}],
+    borderColor: colors[2],
+    borderWidth: 2,
+    pointBackgroundColor: colors[2]
+  }]
+};
+
+if (chLine) {
+  new Chart(chLine, {
+  type: 'polarArea',
+  data: chartData,
+
+  options: {
+        responsive: true,
+        maintainAspectRatio: false,
+<!--    cutoutPercentage: 70,-->
+    scales: {
+      Axes: [{
+        ticks: {
+          beginAtZero: false
+        }
+      }]
+    },
+
+    legend: {
+      display: true,
+      align: top,
+          labels:{
+          fullWidth: true,
+          boxWidth: 40,
+          fontSize: 12,
+          fontStyle: 'normal',
+          fontColor: '#000',
+          padding: 10
+          }
+    },
+
+    title: {
+      display: true,
+      text: 'Duplicates',
+      fontSize: 20,
+      fontStyle: 'bold',
+      fontColor: '#000',
+      lineHeight: 1.2,
+      padding: 10
+        },
+
+    tooltips: {
+      enabled: true,
+      mode: 'single',
+      callbacks: {
+              label: function(tooltipItem, data) {
+                        return data.labels[tooltipItem.index] + ' - ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + ' Duplicates';
+              }
+      }
+    },
+
+  }
+  });
+}
+</script>
+
+
+<!--STACKED BAR CHART    -->
+<script>
+var ctx = document.getElementById("myChart4").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels:
+                [{% for item in labels %}
+                   "{{item}}",
+                  {% endfor %}],
+
+        datasets: [{
+            label: 'Null Values',
+            backgroundColor: "#ff0000",
+            data:
+                 [{% for item in null_graphdata %}
+                      {{item}},
+                    {% endfor %}],
+        },{
+            label: 'Unique Values',
+            backgroundColor: "#45c490",
+            data: [{% for item in uniq_graphdata %}
+                      {{item}},
+                    {% endfor %}],
+        },{
+            label: 'Duplicates',
+            backgroundColor: "#ffff00",
+            data: [{% for item in values %}
+                      {{item}},
+                    {% endfor %}],
+        }],
+    },
+
+options: {
+
+    responsive: true,
+    maintainAspectRatio: false,
+
+    tooltips: {
+      displayColors: true,
+      mode: 'index',
+      intersect: false,
+      callbacks:{
+        mode: 'x',
+      },
+    },
+
+    scales: {
+      xAxes: [{
+        stacked: true,
+        ticks: {
+                fontColor: "black",
+                fontSize: 12,
+                beginAtZero: true
+                },
+        scaleLabel: {
+            display: true,
+            labelString: 'Coloumns'
+         },
+        gridLines: {
+          display: false,
+        }
+      }],
+      yAxes: [{
+        stacked: true,
+        ticks: {
+          fontSize: 12,
+          fontColor: "black",
+          beginAtZero: true,
+        },
+        scaleLabel: {
+            display: true,
+            labelString: 'Data Count'
+        },
+        type: 'linear',
+      }]
+    },
+
+    legend: {
+      display: true,
+      align: top,
+          labels:{
+          fullWidth: true,
+          boxWidth: 20,
+          fontSize: 12,
+          fontStyle: 'normal',
+          fontColor: '#000',
+          padding: 10
+          }
+    },
+
+    title: {
+      display: true,
+      text: 'Null & Unique',
+      fontSize: 20,
+      fontStyle: 'bold',
+      fontColor: '#000',
+      lineHeight: 1.2,
+      padding: 10
+        },
+
+<!--    layout: {-->
+<!--        padding: {-->
+<!--            left: 200,-->
+<!--            right: 200,-->
+<!--            top: 200,-->
+<!--            bottom: 200-->
+<!--        }-->
+<!--    },-->
+
+    }
+});
+</script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</div>
+</body>
+</html>

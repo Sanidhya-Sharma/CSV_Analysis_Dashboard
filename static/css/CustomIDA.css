@@ -1,0 +1,46 @@
+html{
+  overflow:hidden;
+  }
+
+body{
+   background-color: #03396c;
+   overflow:hidden;
+  }
+
+.bd-example{
+   overflow:hidden;
+    }
+
+h1{
+    text-align: center;
+    font-size: 10.5rem;
+    color: white;
+    }
+
+h5{
+    margin: 50px;
+    top: 25px;
+    margin-bottom: .6rem;
+    color: #ffffff;
+    padding-top: 90px;
+    font-size: 80px;
+    font-family: "trebuchet ms", sans-serif;
+    }
+
+.subtitle{
+    color: #ffffff;
+    }
+
+img {
+    height: 100vh;
+    }
+
+.col-md-4{
+    text-align-last: center;
+     max-width: 100%;
+}
+
+
+
+
+

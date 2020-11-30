@@ -1,0 +1,100 @@
+/* LOADING CIRCLE ANIMATION CSS */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+a{
+    text-align: center;
+    text-size: 60px;
+}
+#hlo {
+    padding-right: 0;
+    padding-left: 0;
+    border-radius: 0;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: blue !important;
+  }
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+
+
+/*LOADING TEXT ANIMATION CSS*/
+h5{
+    position: relative;
+    color: rgba(0, 0, 0, 0);
+    font-size: 8em
+}
+h5:before {
+    content: attr(data-text);
+    position: absolute;
+    overflow: hidden;
+    max-width: 7em;
+    white-space: nowrap;
+    color: #3498db;
+    animation: loading 7s linear;
+}
+@keyframes loading {
+    0% {
+        max-width: 0;
+    }
+}
+
+/*JUMBOTRON*/
+.mycustom-jumbotron {
+    padding: 70px 30px 70px 30px;
+    margin: 0px auto;
+    background: #b7e6e6;
+    color: #080808;
+}
+
+.display-4 {
+    font-size: 6rem;
+    font-weight: 500;
+    line-height: 1;
+}

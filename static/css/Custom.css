@@ -1,0 +1,56 @@
+.bd-example{
+overflow:hidden;
+}
+
+h1{
+text-align: center;
+font-size: 8.5rem;
+color: white;
+}
+
+h5{
+margin: 10px;
+top: 25px;
+margin-bottom: .6rem;
+color: #ffffff;
+padding-top: 90px;
+font-size: 80px;
+font-family: "trebuchet ms", sans-serif;
+}
+
+.subtitle{
+color: #ffffff;
+}
+
+img {
+height: 100vh;
+}
+
+.navbar-brand>img {
+height: 100px;
+display: inline-block;
+margin-top: -100px;
+margin-left: -20px;
+width: 150px;
+margin-bottom: -100px;
+margin-right: 10px;
+
+.carousel-caption {
+position: absolute;
+right: 15%;
+bottom: 20px;
+left: 15%;
+z-index: 10;
+padding-top: 20px;
+padding-bottom: 20px;
+color: #fff;
+text-align: center;
+}
+
+.carousel-indicators{
+bottom:60px;
+}
+
+
+
+
